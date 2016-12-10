@@ -9,8 +9,23 @@ export default class Login extends Component {
     super(props);
     console.log(props);
   }
-  login(){
+  async login(){
     console.log('Test');
+
+    try {
+      let response = await fetch('/login', {
+  method: 'POST',
+  headers: {
+    'Accept': 'application/json',
+    'Content-Type': 'application/x-www-form-urlencoded',
+  },
+  body: new FormData(document.querySelector('form'))
+});
+      let responseJson = await response.json();
+      console.log(responseJson);
+    } catch(error) {
+      console.error(error);
+    }
 
   }
     render(){
